@@ -1,3 +1,6 @@
+from filecmp import cmp
+
+
 class Node:
     def __init__(self, _id, pos,  _weight, edges_in = {}, edges_out = {}, tag=-1):
         self.id = _id
@@ -16,3 +19,5 @@ class Node:
     # copy
 
     # compareTo
+    def __cmp__(self, other):
+        return cmp(self.weight, other.weight)
