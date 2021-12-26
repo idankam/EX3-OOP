@@ -1,6 +1,3 @@
-from src.Edge import Edge
-
-
 class Node:
     def __init__(self, _id, pos, _weight=-1, edges_in={}, edges_out={}, tag=-1):
         self.id = _id
@@ -10,10 +7,10 @@ class Node:
         self.tag = tag
         self.weight = _weight
 
-    def add_edge_out(self, dest, weight, tag=-1):
+    def add_edge_out(self, dest, weight):
         self.edges_out[dest] = weight
 
-    def add_edge_in(self, src, weight, tag=-1):
+    def add_edge_in(self, src, weight):
         self.edges_out[src] = weight
 
     # remove edge_out
@@ -35,5 +32,3 @@ class Node:
     def copy(self):
         new_node = Node(self.id, self.pos, self.weight, self.edges_in.copy(), self.edges_out.copy(), self.tag)
         return new_node
-
-    # compareTo
