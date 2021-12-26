@@ -1,13 +1,8 @@
 class Edge:
 
-    def __init__(self, src, dest, weight, tag=-1):
+    def __init__(self, src, w, dest):
         self.src = src
         self.dest = dest
-        self.weight = weight
-        self.tag = tag
-
-    # getters and setters
+        self.weight = w
 
     # copy
-
-    # compareTo
