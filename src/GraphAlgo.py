@@ -14,7 +14,7 @@ from decimal import Decimal
 
 
 def checkIfAllBlack(graph) -> bool:
-    for checkColorNode in graph:
+    for checkColorNode in graph.Nodes.values():
         if checkColorNode.tag != DiGraph.BLACK:
             return False
     return True
@@ -41,9 +41,9 @@ class GraphAlgo(GraphAlgoInterface):
         queue = [node]
         while queue:
             id = queue.pop()
-            for i in g.all_out_edges_of_node():
-                if g.Nodes.get(i.dest).tag == WHITE:
-                    nextId = i.dest
+            for dest, w in g.all_out_edges_of_node(id).items():
+                if g.Nodes.get(dest).tag == WHITE:
+                    nextId = dest
                     g.Nodes.get(nextId).tag = GREY
                     queue.append(nextId)
             g.Nodes.get(id).tag = BLACK
@@ -52,7 +52,7 @@ class GraphAlgo(GraphAlgoInterface):
         self.graph.colorWhite()  ## make the func
         if self.graph.v_size() < 2:
             return True
-        key = self.graph.Nodes.keys()[0]
+        key = list(self.graph.Nodes.keys())[0]
         self.BFS(self.graph, key)
         if not checkIfAllBlack(self.graph):
             return False
@@ -69,13 +69,19 @@ class GraphAlgo(GraphAlgoInterface):
             with open(file_name,"r") as f:
                 dict = json.load(f)
             for n in dict['Nodes']:
-                list = n["pos"].split(',')
-                node = Node(n["id"], pos=(Decimal(list[0]), Decimal(list[1]), Decimal(list[2])))
-                g.Nodes[n["id"]] = node
+                if "pos" in n:
+                    loc = n["pos"].split(',')
+                    g.add_node(node_id=n["id"], pos=(float(loc[0]), float(loc[1]), float(loc[2])))
+                else:
+                    g.add_node(node_id=n["id"])
+                # node = Node(n["id"], pos=(Decimal(loc[0]), Decimal(loc[1]), Decimal(loc[2])))
+                # g.Nodes[n["id"]] = node
+
 
             for e in dict["Edges"]:
-                edge = Edge(e['src'], e['w'], e['dest'])
-                g.Edges[str(edge.src)+","+str(edge.dest)] = edge
+                g.add_edge(id1=e['src'], id2=e['dest'], weight=e['w'])
+                # edge = Edge(e['src'], e['w'], e['dest'])
+                # g.Edges[str(edge.src)+","+str(edge.dest)] = edge
             self.__init__(g)
             return True
         except:
@@ -94,8 +100,8 @@ class GraphAlgo(GraphAlgoInterface):
     def nodesEdgesToDisplay(self,graph):
         gDisplay = GraphToDisplay()
         for node in graph.Nodes.values():
-            posAsSreing = str(node.pos[0])+","+str(node.pos[1])+","+"{:.1f}".format(node.pos[2])
-            newNode = NodeToDisplay(posAsSreing, node.id)
+            posAsString = str(node.pos.x)+","+str(node.pos.y)+","+"{:.1f}".format(node.pos.z)
+            newNode = NodeToDisplay(posAsString, node.id)
             gDisplay.Nodes.append(newNode)
         for e in graph.Edges.values():
             gDisplay.Edges.append(e)
@@ -106,6 +112,8 @@ class GraphAlgo(GraphAlgoInterface):
             float, list):  ## check if first src and second dest (not nesscerry connected)
         pointers = self.dijkstra(id1)
         path = self.getPath(pointers, id1, id2)
+        if path is None:
+            return float("inf"), []
         pathInt = self.nodesListToIntLis(path)
         return self.graph.Nodes.get(id2).weight, pathInt
 
@@ -114,6 +122,8 @@ class GraphAlgo(GraphAlgoInterface):
             path = []
             prev = dst
             while prev != src:
+                if prev == -1:
+                    return None
                 path.insert(0, self.graph.Nodes.get(prev))
                 prev = pointers.get(prev)
             path.insert(0, self.graph.Nodes.get(src))
@@ -127,7 +137,7 @@ class GraphAlgo(GraphAlgoInterface):
     def dijkstra(self, src):  ## check if weight is positive
         pqueue = PriorityQueue()
         prevPointer = {}  ## key = id node, val= point to(node)
-        for node in self.graph.Nodes:
+        for node in self.graph.Nodes.values():
             if node.id == src:
                 node.weight = 0
                 prevPointer[node.id] = None
@@ -137,12 +147,12 @@ class GraphAlgo(GraphAlgoInterface):
             pqueue.insert(node)
         while not pqueue.isEmpty():
             currNode = pqueue.delete()
-            for edge in self.graph.all_out_edges_of_node(currNode.id):
-                nodeNeighbour = self.graph.Nodes.get(edge.dest)
-                newWeight = currNode.weight + edge.weight
-                if newWeight < nodeNeighbour.weight:
-                    nodeNeighbour.weight = newWeight
-                    prevPointer[nodeNeighbour.id] = currNode.id
+            for (nodeNeighbourID, weight) in self.graph.all_out_edges_of_node(currNode.id).items():
+                # nodeNeighbourID = self.graph.Nodes.get(edge.dest)
+                newWeight = currNode.weight + weight
+                if newWeight < self.graph.Nodes.get(nodeNeighbourID).weight:
+                    self.graph.Nodes.get(nodeNeighbourID).weight = newWeight
+                    prevPointer[nodeNeighbourID] = currNode.id
         return prevPointer
 
     def get_graph(self) -> GraphInterface:
@@ -152,11 +162,11 @@ class GraphAlgo(GraphAlgoInterface):
         """
 
     def TSP(self, node_lst: List[int]) -> (List[int], float):
-        try:
+        # try:
             flag = True
             for i in range(len(node_lst)):
                 try:
-                    tmp = self.graph.Nodes.keys()[i]
+                    tmp = list(self.graph.Nodes.keys())[i]
                 except:
                     flag = False
                     break
@@ -171,15 +181,15 @@ class GraphAlgo(GraphAlgoInterface):
             ansNodes.append(self.graph.Nodes.get(node_lst[0]))  ## The node
             del node_lst[0]
             while len(node_lst) > 0:
-                dij_original_pointers = original.dijkstra(ansNodes[-1].wheigt)
-                dij_transpose_pointers = transpose.dijkstra(ansNodes[0].weight)
+                dij_original_pointers = original.dijkstra(ansNodes[-1].id)
+                dij_transpose_pointers = transpose.dijkstra(ansNodes[0].id)
                 endMinWeight = sys.maxsize
                 endMinWeightKey = -1
                 for nodeKey in node_lst:
                     currNode = self.graph.Nodes.get(nodeKey)
-                if currNode.weight < endMinWeight:
-                    endMinWeight = currNode.weight
-                    endMinWeightKey = currNode.id
+                    if currNode.weight < endMinWeight:
+                        endMinWeight = currNode.weight
+                        endMinWeightKey = currNode.id
 
                 startMinWeight = sys.maxsize
                 startMinWeightKeyNode = -1
@@ -190,18 +200,22 @@ class GraphAlgo(GraphAlgoInterface):
                         startMinWeightKeyNode = currNode.id
 
                 if endMinWeight < startMinWeight:
-                    tmpList = self.getPath(dij_original_pointers, ansNodes[-1].weight, endMinWeightKey)
+                    tmpList = self.getPath(dij_original_pointers, ansNodes[-1].id, endMinWeightKey)
                     del tmpList[0]
                     for node in tmpList:
                         ansNodes.append(node)
-                        totalDist = ansNodes[-1].weight - ansNodes[-2].weight
+                        # totalDist += ansNodes[-2].weight - ansNodes[-1].weight
+                        totalDist += self.graph.Edges[str(ansNodes[-2].id)+","+str(ansNodes[-1].id)].weight
+                        # totalDist += ansNodes[-1].weight - ansNodes[-2].weight
                     node_lst.remove(endMinWeightKey)
                 else:
-                    tmpList = transpose.getPath(dij_transpose_pointers, ansNodes[0].weight, startMinWeight)
+                    tmpList = transpose.getPath(dij_transpose_pointers, ansNodes[0].id, startMinWeightKeyNode)
                     del tmpList[0]
                     for i in range(len(tmpList)):
                         ansNodes.insert(0, original.graph.Nodes.get(tmpList[i].id))
-                        totalDist = ansNodes[1] - ansNodes[0]
+                        totalDist += self.graph.Edges[str(ansNodes[0].id) + "," + str(ansNodes[1].id)].weight
+                        # totalDist += ansNodes[0].weight - ansNodes[1].weight
+                        # totalDist += ansNodes[1].weight - ansNodes[0].weight
                     node_lst.remove(startMinWeightKeyNode)
                 for nodeId in node_lst:
                     for node in ansNodes:
@@ -209,8 +223,8 @@ class GraphAlgo(GraphAlgoInterface):
                             node_lst.remove(nodeId)
             ans = self.nodesListToIntLis(ansNodes)
             return ans, totalDist
-        except:
-            return None
+        # except:
+        #     return None
 
     def nodesListToIntLis(self, nodeList) -> List:
         listAns = []
@@ -225,18 +239,21 @@ class GraphAlgo(GraphAlgoInterface):
         """
 
     def centerPoint(self) -> (int, float):  ## why if not connected we canot find center
+
+        if not self.isConnected():
+            return None, float("inf")
         minMaxNode = None
         bestMinMax = sys.maxsize  ## maxNum
-        for node in self.graph.Nodes:
+        for node in self.graph.Nodes.values():
             self.dijkstra(node.id)
             tmpMaxDist = -sys.maxsize - 1
-            for checkNode in self.graph.Nodes:
+            for checkNode in self.graph.Nodes.values():
                 if checkNode.weight > tmpMaxDist:
                     tmpMaxDist = checkNode.weight
             if tmpMaxDist < bestMinMax:
                 bestMinMax = tmpMaxDist
                 minMaxNode = node
-        return bestMinMax, minMaxNode
+        return minMaxNode.id, bestMinMax
 
         """
         Finds the node that has the shortest distance to it's farthest node.
@@ -275,8 +292,8 @@ if __name__ == '__main__':
 
 
     gAlgo = GraphAlgo()
-    g = gAlgo.load_from_json(r"C:\Users\gabi\PycharmProjects\EX3-OOP\data\A1.json")
-    gAlgo = GraphAlgo(g)
-    gAlgo.save_to_json("test.json")
+    g = gAlgo.load_from_json(r"..\data\T0.json")
+    # gAlgo = GraphAlgo(g)
+    gAlgo.save_to_json(r"..\data\test.json")
 
 

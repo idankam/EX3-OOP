@@ -14,3 +14,7 @@ class Location:
     def distance(self, another_loc):
         dist = ((self.x - another_loc.x)^2 + (self.y - another_loc.y)^2 + (self.z - another_loc.z)^2) ^0.5
         return dist
+
+    def __str__(self):
+        s = str(self.x) + "," + str(self.y) + "," + str(self.z)
+        return s

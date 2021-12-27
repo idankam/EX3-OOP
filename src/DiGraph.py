@@ -26,14 +26,17 @@ class DiGraph(GraphInterface):
         return self.mc
 
     def add_edge(self, id1: int, id2: int, weight: float) -> bool:
-        self.Nodes.get(str(id1)).add_edge_out(id2, weight)
-        self.Nodes.get(str(id2)).add_edge_in(id1, weight)
+        self.Nodes.get(id1).add_edge_out(id2, weight)
+        self.Nodes.get(id2).add_edge_in(id1, weight)
         e = Edge(src=id1, dest=id2, w=weight)
         e_name = str(id1) + ',' + str(id2)
         self.Edges[e_name] = e
 
     def add_node(self, node_id: int, pos: tuple = None) -> bool:
-        loc = Location(pos[0], pos[1], pos[2])
+        if pos is None:
+            loc = Location()
+        else:
+            loc = Location(pos[0], pos[1], pos[2])
         n = Node(_id=node_id, pos=loc)
         self.Nodes[node_id] = n
 
@@ -70,20 +73,23 @@ class DiGraph(GraphInterface):
             """
 
     def get_all_v(self) -> dict:
-        return self.Nodes
+        data_dict = {}
+        for key, value in self.Nodes.items():
+            data_dict[key] = str(value)
+        return data_dict
 
     """return a dictionary of all the nodes connected to (into) node_id ,
             each node is represented using a pair (other_node_id, weight)
              """
     def all_in_edges_of_node(self, id1: int) -> dict:
-        return self.Nodes.get(id1).edge_in
+        return self.Nodes.get(id1).edges_in
 
     """return a dictionary of all the nodes connected from node_id , each node is represented using a pair
             (other_node_id, weight)
             """
 
     def all_out_edges_of_node(self, id1: int) -> dict:
-        return self.Nodes.get(id1).edge_out
+        return self.Nodes.get(id1).edges_out
 
     # copy
     # color white
@@ -95,12 +101,16 @@ class DiGraph(GraphInterface):
     def transpose(self):
         T_graph = DiGraph()
         for node in self.Nodes.values():
-            copy_node = node.copy()
-            copy_node.edges_out.clear()
-            copy_node.edges_in.clear()
+            # copy_node = node.copy()
+            # copy_node.edges_out.clear()
+            # copy_node.edges_in.clear()
+            T_graph.add_node(node_id=node.id, pos=(node.pos.x, node.pos.y, node.pos.z))
 
         for edge in self.Edges.values():
-            T_graph.add_edge(edge.id2, edge.id1, edge.weight)
+            T_graph.add_edge(id1=edge.dest, id2=edge.src, weight=edge.weight)
 
         return T_graph
 
+    def __str__(self):
+        s = "nodes: " + str(self.get_all_v()) + "\n" + "edges: " + str(self.Edges)
+        return s

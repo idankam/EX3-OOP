@@ -5,4 +5,6 @@ class Edge:
         self.dest = dest
         self.weight = w
 
-    # copy
+    def __repr__(self):
+        s = "src: " + str(self.src) + ", dest: " + str(self.dest) + ", w: " + str(self.weight)
+        return s
