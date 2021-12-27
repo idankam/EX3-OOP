@@ -1,44 +1,16 @@
 # EX3-OOP
 python implementation for Directed Weighted Graphs and Algorithms
 
-# EX2-OOP
-
-https://user-images.githubusercontent.com/79406881/145840389-253527a9-7752-4c70-92bf-8b617c96ad6b.mp4
+![image](https://user-images.githubusercontent.com/79406881/147505114-0ff881c2-fccb-45fc-9cb5-acd41036d855.png)
 
 
 Graphs and graphs-algorithms explanations:
 
 ### Class Edge : This class represents the edges between two nodes , source and destinations in the graph.
 
-#### Class Edge functions:
-
-getSrc – Returning the source.
-
-getDst – Returning the Destination.
-
-gwtWeight – Returning the Weight od the edge.
-
-getTag – Returning the Tag of the edge.
-
-setTag – Setting the tag of the edge.
-
-Copy – coping the object edge.
-
 ### Class Node : This class represents a Node in the graph. The node holds an id position weight and the edges from him to another node.
 
-#### Class Edge functions:
-
-getKey – returning the id of the node.
-
-getLocation – Returning the location on the cartesian axis system.
-
-GeEdge – returning the edges.
-
-setEdge – Setting the edges.
-
-getTag – returning the tag.
-
-setTag – setting the tag.
+#### Class Node functions:
 
 removeEdge – removing an edge from this node.
 
@@ -48,11 +20,11 @@ CleanEdges – removing all the edges from the node.
 
 compareTo – compare two nodes by there weight.
 
-### Class Geoloc : This class represents the locations to each node by x axis y axis and z axis.
+### Class Location : This class represents the locations to each node by x axis y axis and z axis.
 
 All the functions there Returning the the locations or setting them ( getters/setters).
 
-### Class DWG: This class represents the Directed graph the graph holds all the nodes and all the edges.
+### Class DiGtaph: This class represents the Directed graph the graph holds all the nodes and all the edges.
 
 #### Class DWG functions:
 
