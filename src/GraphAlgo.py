@@ -11,7 +11,7 @@ from Edge import Edge
 from GraphToDisplay import NodeToDisplay
 from GraphToDisplay import GraphToDisplay
 from decimal import Decimal
-
+from graph_gui import *
 
 def checkIfAllBlack(graph) -> bool:
     for checkColorNode in graph.Nodes.values():
@@ -22,7 +22,7 @@ def checkIfAllBlack(graph) -> bool:
 
 class GraphAlgo(GraphAlgoInterface):
 
-    def __init__(self, graph = None):
+    def __init__(self, graph=None):
         self.graph = graph
 
     # get - THERE IS NO NEED
@@ -66,7 +66,7 @@ class GraphAlgo(GraphAlgoInterface):
     def load_from_json(self, file_name: str) -> bool:
         try:
             g = DiGraph()
-            with open(file_name,"r") as f:
+            with open(file_name, "r") as f:
                 dict = json.load(f)
             for n in dict['Nodes']:
                 if "pos" in n:
@@ -77,7 +77,6 @@ class GraphAlgo(GraphAlgoInterface):
                 # node = Node(n["id"], pos=(Decimal(loc[0]), Decimal(loc[1]), Decimal(loc[2])))
                 # g.Nodes[n["id"]] = node
 
-
             for e in dict["Edges"]:
                 g.add_edge(id1=e['src'], id2=e['dest'], weight=e['w'])
                 # edge = Edge(e['src'], e['w'], e['dest'])
@@ -87,26 +86,24 @@ class GraphAlgo(GraphAlgoInterface):
         except:
             return False
 
-
     def save_to_json(self, file_name: str) -> bool:
         try:
             with open(file_name, "w") as f:
                 gDisplay = self.nodesEdgesToDisplay(self.graph)
-                json.dump(gDisplay, fp=f, indent=2, default=lambda o : o.__dict__)
+                json.dump(gDisplay, fp=f, indent=2, default=lambda o: o.__dict__)
             return True
         except:
             return False
 
-    def nodesEdgesToDisplay(self,graph):
+    def nodesEdgesToDisplay(self, graph):
         gDisplay = GraphToDisplay()
         for node in graph.Nodes.values():
-            posAsString = str(node.pos.x)+","+str(node.pos.y)+","+"{:.1f}".format(node.pos.z)
+            posAsString = str(node.pos.x) + "," + str(node.pos.y) + "," + "{:.1f}".format(node.pos.z)
             newNode = NodeToDisplay(posAsString, node.id)
             gDisplay.Nodes.append(newNode)
         for e in graph.Edges.values():
             gDisplay.Edges.append(e)
         return gDisplay
-
 
     def shortest_path(self, id1: int, id2: int) -> (
             float, list):  ## check if first src and second dest (not nesscerry connected)
@@ -122,7 +119,7 @@ class GraphAlgo(GraphAlgoInterface):
             path = []
             prev = dst
             while prev != src:
-                if prev == -1:
+                if prev == -1 or prev is None:
                     return None
                 path.insert(0, self.graph.Nodes.get(prev))
                 prev = pointers.get(prev)
@@ -132,7 +129,7 @@ class GraphAlgo(GraphAlgoInterface):
             return None
 
     def plot_graph(self) -> None:
-        pass
+        Gui(gAlgo)
 
     def dijkstra(self, src):  ## check if weight is positive
         pqueue = PriorityQueue()
@@ -162,7 +159,7 @@ class GraphAlgo(GraphAlgoInterface):
         """
 
     def TSP(self, node_lst: List[int]) -> (List[int], float):
-        # try:
+        try:
             flag = True
             for i in range(len(node_lst)):
                 try:
@@ -205,7 +202,7 @@ class GraphAlgo(GraphAlgoInterface):
                     for node in tmpList:
                         ansNodes.append(node)
                         # totalDist += ansNodes[-2].weight - ansNodes[-1].weight
-                        totalDist += self.graph.Edges[str(ansNodes[-2].id)+","+str(ansNodes[-1].id)].weight
+                        totalDist += self.graph.Edges[str(ansNodes[-2].id) + "," + str(ansNodes[-1].id)].weight
                         # totalDist += ansNodes[-1].weight - ansNodes[-2].weight
                     node_lst.remove(endMinWeightKey)
                 else:
@@ -223,8 +220,8 @@ class GraphAlgo(GraphAlgoInterface):
                             node_lst.remove(nodeId)
             ans = self.nodesListToIntLis(ansNodes)
             return ans, totalDist
-        # except:
-        #     return None
+        except:
+            return None
 
     def nodesListToIntLis(self, nodeList) -> List:
         listAns = []
@@ -290,10 +287,8 @@ if __name__ == '__main__':
     #     x , y = random.uniform(0,100) , random.uniform(0,100)
     #     g.Nodes[i] = Node(i,(x,y,0))
 
-
     gAlgo = GraphAlgo()
     g = gAlgo.load_from_json(r"..\data\T0.json")
     # gAlgo = GraphAlgo(g)
-    gAlgo.save_to_json(r"..\data\test.json")
-
-
+    # gAlgo.save_to_json(r"..\data\test.json")
+    gAlgo.plot_graph()
