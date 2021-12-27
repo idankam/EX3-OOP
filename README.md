@@ -8,67 +8,69 @@ Graphs and graphs-algorithms explanations:
 
 ### Class Edge : This class represents the edges between two nodes , source and destinations in the graph.
 
-### Class Node : This class represents a Node in the graph. The node holds an id position weight and the edges from him to another node.
+### Class Node : This class represents a Node in the graph. The node holds an id, position, weight, the edges out (from him to another node),the edges in (from another node to him) and a tag.
 
 #### Class Node functions:
 
-removeEdge – removing an edge from this node.
+add_edge_in – adding an edge from node to this node.
+
+add_edge_out – adding an edge from this node to another node.
 
 Copy – coping the object node.
 
-CleanEdges – removing all the edges from the node.
+remove_edge_out - removing a specific edge out of this node.
 
-compareTo – compare two nodes by there weight.
+remove_edge_in - removing a specific edge in of this node.
+
+remove_all_edges_out - removing all edges out of this node.
+
+remove_all_edges_in - removing all edges in of this node.
+
+__str__ – representig the node as a string.
 
 ### Class Location : This class represents the locations to each node by x axis y axis and z axis.
 
-All the functions there Returning the the locations or setting them ( getters/setters).
+copy - coping the same location.
 
-### Class DiGtaph: This class represents the Directed graph the graph holds all the nodes and all the edges.
+distance - calculating the distance from this node to another node.
 
-#### Class DWG functions:
+### Class DiGraph: This class represents the Directed graph the graph holds all the nodes and all the edges.
 
-getNodes- returning the nodes of the graph.
+#### Class DiGraph functions:
 
-Getedges – Returning all the edges of the graph.
+v_size- returning number of nodes in the graph.
+
+edgeSize – returning number of edges in the graph.
 
 addNode – Adding a node to the graph.
 
-Connect – connecting two nodes with an edge (that holds weight).
-
-Nodeiter – iterating all the nodes in the graph.
-
-edgeIter – iterating all the edges in the graph.
+add_edge – connecting two nodes with an edge (that holds weight).
 
 removeNode – Removing a node from the graph.
 
 removeEdge – Removing an Edge from the graph.
 
-nodeSize – returning number of nodes in the graph.
+get_mc – returning all the changes in the graph.
 
-edgeSize – returning number of edges in the graph.
+get_all_v - returning a dictionary of all the nodes in the Graph, each node is represented using a pair (node_id, node_data).
 
-getMc – returning all the changes in the graph.
+all_in_edges_of_node - return a dictionary of all the nodes connected to (into) node_id each node is represented using a pair (other_node_id, weight)
 
-setEdges – setting the edges of the DWG.
+all_out_edges_of_node - return a dictionary of all the nodes connected from node_id , each node is represented using a pair (other_node_id, weight)
 
-setNodes – setting the nodes of the DWG.
-
-Copy – coping the DWG.
+__str__ - returning a string representing the DiGraph.
 
 colorWhite – iterating the nodes and changing the tag to be white(the options for the tag are three colors).
 
 transpose – creating a transpose graph by changing the directions of the edges(that will help us with algorithms in the next class).
 
-### Class DWGAlgorithms: A class that holds a DWG(Directed weighted Graph). This class has the algorithms we can run on the graph.
+### Class GraphAlgo: A class that holds a DiGraph(Directed weighted Graph). This class has the algorithms we can run on the graph.
 
-#### Class DWGAlgorithms functions –
+#### Class GraphAlgo functions –
 
 Init – The constructor getting a graph an returning it.
 
 getGraph – returning the graph.
-
-Copy – coping the graph.
 
 BFS – a searching algorithm that is getting the graph and a node and painting every node he get to.
 
@@ -76,27 +78,35 @@ Dijkstra – this is the an algorithm that we are using to get the shortest path
 
 Is connected – a function that is checking if the graph is connected by using BFS algorithm we are checking on one node and after that using the transpose dunction and checking on the transpose if there is a rout from this node in the graph and also in the transpose graph so the graph is connected.
 
-Is connected GUI example:
+sortestPathDist – calling the Dijkstra algorithm and by that returning the shortest path weight.
 
-sortestPathDist – calling the Dijkstra algorithm and by that returning the chortest path weight.
-
-shortestPath – calling the dijekstra and returning a list of the shortest path.
+shortest_path – calling the dijekstra and returning a tuple of list of the shortest path and float of the path.
 
 getPath – a helper function that is putting the shortest path after using the dijekstra into a list(the dijektra returning a hushMap).
 
-Center – returning the center of the graph , the point where the longest destination of the point is the shortest (using the dijekstra algorithm).
+centerPoint – returning the center of the graph , the point where the longest destination of the point is the shortest (using the dijekstra algorithm).
 
 Tsp – this algorithm is finding the shortest path between a list of nodes. We are doing it by rotating the list of cities that we are getting , every rotation we are checking the closest on by using the dijekstra and by using the transpose function we are checking what will be a shorter path to add this city to the end of the rout or to the start(we are looking for the shortest path).
 
-Save – saving the graph into a json file , using the Gson library of google and using a container class.
+save_to_json – saving the graph into a json file , using a NodeToDisplay class(helper class).
 
-Load – loading from json file , using the Gson library of google and using a container class.
+load_from_json – loading from json file.
 
-### Class Container: holds an array of nods and of edges , this class his helping us to save and load to json because any json file holds edges and nodes.
+nodesEdgesToDisplay - a helper function we are using to save the nodes into a json file with.
+
+plot_graph - the function that is calling the Gui to plot the graph.
+
+nodesListToIntLis -  converting node list to their id wich is int.
+
+
+### Class GraphToDisplay: holds an array of nods and of edges , this class is helping us to save and load to json because any json file holds edges and nodes, this class also help us to represent a node to a json file as we want , therefore holds also a class of NodeToDisplay.
+
+### Class PriorityQueue: a class that is implementing a priorityQueue which has the functions isEmpty, insert, size, delete. this priorityqueue is giving priority to the node with the minimum weight.To read more about the functions above https://docs.oracle.com/javase/7/docs/api/java/util/PriorityQueue.html
+
 
 ## GUI explanations:
 
-After loading the graph there is a screen that we created by using Jfram.
+After loading the graph there is a screen that we created by using pygame.
 
 In this screen we have several options the we created in the bar , by using the Jbar of gui.
 
