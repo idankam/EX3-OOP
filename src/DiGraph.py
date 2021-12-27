@@ -31,6 +31,7 @@ class DiGraph(GraphInterface):
         e = Edge(src=id1, dest=id2, w=weight)
         e_name = str(id1) + ',' + str(id2)
         self.Edges[e_name] = e
+        self.mc+=1
 
     def add_node(self, node_id: int, pos: tuple = None) -> bool:
         if pos is None:
@@ -39,9 +40,11 @@ class DiGraph(GraphInterface):
             loc = Location(pos[0], pos[1], pos[2])
         n = Node(_id=node_id, pos=loc)
         self.Nodes[node_id] = n
+        self.mc += 1
 
     def add_exist_node(self, node: Node):
         self.Nodes[node.id] = node
+        self.mc += 1
 
     def remove_node(self, node_id: int) -> bool:
         is_removed = self.Nodes.pop(node_id)
@@ -58,6 +61,7 @@ class DiGraph(GraphInterface):
                 elif dest == str(node_id):
                     self.remove_edge(int(src), int(dest))
                     self.Nodes.get(int(src)).remove_edge_out(int(dest))
+        self.mc += 1
         return True
 
     def remove_edge(self, node_id1: int, node_id2: int) -> bool:
@@ -66,6 +70,7 @@ class DiGraph(GraphInterface):
         if is_removed is None:
             return False
         else:
+            self.mc += 1
             return True
 
     """return a dictionary of all the nodes in the Graph, each node is represented using a pair
@@ -112,5 +117,5 @@ class DiGraph(GraphInterface):
         return T_graph
 
     def __str__(self):
-        s = "nodes: " + str(self.get_all_v()) + "\n" + "edges: " + str(self.Edges)
+        s = "Graph: |V|=" + str(self.v_size()) + ", |E|=" + str(self.e_size())
         return s
