@@ -12,6 +12,8 @@ from GraphToDisplay import NodeToDisplay
 from GraphToDisplay import GraphToDisplay
 from decimal import Decimal
 from graph_gui import *
+from src.graph_gui import Gui
+
 
 def checkIfAllBlack(graph) -> bool:
     for checkColorNode in graph.Nodes.values():
@@ -129,7 +131,7 @@ class GraphAlgo(GraphAlgoInterface):
             return None
 
     def plot_graph(self) -> None:
-        Gui(gAlgo)
+        Gui(self)
 
     def dijkstra(self, src):  ## check if weight is positive
         pqueue = PriorityQueue()

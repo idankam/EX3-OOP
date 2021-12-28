@@ -60,7 +60,7 @@ def check1():
     g_algo.load_from_json(file)  # init a GraphAlgo from a json file
     print(g_algo.shortest_path(0, 3))
     print(g_algo.shortest_path(3, 1))
-    print(g_algo.centerPoint())
+    print(str(g_algo.centerPoint()))
     g_algo.save_to_json(file + '_saved')
     g_algo.plot_graph()
 
@@ -70,7 +70,7 @@ def check2():
       :return:
       """
     g_algo = GraphAlgo()
-    file = '../data/A5.json'
+    file = r"..\data\A5.json"
     g_algo.load_from_json(file)
     g_algo.get_graph().remove_edge(13, 14)
     g_algo.save_to_json(file + "_edited")
@@ -83,6 +83,7 @@ def check2():
     dist, path = g_algo.shortest_path(2, 20)
     print(dist, path)
     print(g_algo.TSP([1, 2, 3]))
+    print(g_algo.TSP([5, 15, 25, 35]))
     g_algo.plot_graph()
 
 
@@ -107,5 +108,32 @@ def check3():
     g_algo.plot_graph()
 
 
+def check4():
+    for i in range(0, 6):
+        g_algo = GraphAlgo()
+        file = r"..\data\A" + str(i) + ".json"
+        g_algo.load_from_json(file)
+        print("center a" + str(i) + ": " + str(g_algo.centerPoint()))
+
+
+def check5():
+    print()
+    for i in range(1, 4):
+        g_algo = GraphAlgo()
+        file = r"..\data\G" + str(i) + ".json"
+        g_algo.load_from_json(file)
+        print("center a" + str(i) + ": " + str(g_algo.centerPoint()))
+
+    print()
+    for i in range(1, 4):
+        g_algo = GraphAlgo()
+        file = r"..\data\G" + str(i) + ".json"
+        g_algo.load_from_json(file)
+        print("TSP a" + str(i) + ": " + str(g_algo.TSP([1, 7, 15, 3])))
+
+
 if __name__ == '__main__':
     check()
+    print()
+    check4()
+    check5()
