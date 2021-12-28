@@ -103,6 +103,7 @@ nodesListToIntLis -  converting node list to their id wich is int.
 
 ### Class PriorityQueue: a class that is implementing a priorityQueue which has the functions isEmpty, insert, size, delete. this priorityqueue is giving priority to the node with the minimum weight.To read more about the functions above https://docs.oracle.com/javase/7/docs/api/java/util/PriorityQueue.html
 
+### Class PlottingRes: this class is plotting and compering our reasults by using matplotlib library between java and paython.
 
 ## GUI explanations:
 
@@ -138,62 +139,117 @@ NOTE : we also added a function that while searching the shortest path between t
 # Performance report python:
 LIST FOR TSP = [5,7,12,2,6,8]
 
-A1 - load: 0.0
-save: 0.0030765533447265625
-center: 0.0009214878082275391
-tsp: 0.00099945068359375
+A1 - load: 0.0010006427764892578 seconds.
+    save: 0.0030765533447265625 seconds.
+    center: 0.0009214878082275391 seconds.
+    tsp: 0.00099945068359375 seconds.
 
-A2 -load: 0.0010004043579101562
-save: 0.005053520202636719
-center: 0.002947092056274414
-tsp: 0.0009999275207519531
+A2 -load: 0.0010004043579101562 seconds.
+    save: 0.005053520202636719 seconds.
+    center: 0.002947092056274414 seconds.
+    tsp: 0.0009999275207519531 seconds.
 
-A3 - load: 0.0010004043579101562
-save: 0.006071567535400391
-center: 0.01009678840637207
-tsp: 0.002000093460083008
+A3 - load: 0.0010004043579101562 seconds.
+    save: 0.006071567535400391 seconds.
+    center: 0.01009678840637207 seconds.
+    tsp: 0.002000093460083008 seconds.
 
-A4-load: 0.0010006427764892578
-save: 0.00450897216796875
-center: 0.006002664566040039
-tsp: 0.0009999275207519531
+A4-load: 0.0010006427764892578 seconds.
+   save: 0.00450897216796875 seconds.
+   center: 0.006002664566040039 seconds.
+   tsp: 0.0009999275207519531 seconds.
 
-A5 -load: 0.0010006427764892578
-save: 0.006489276885986328
-center: 0.008997440338134766
-tsp: 0.002000093460083008
+A5 -load: 0.0010006427764892578 seconds.
+    save: 0.006489276885986328 seconds.
+    center: 0.008997440338134766 seconds.
+    tsp: 0.002000093460083008 seconds.
+    
+ 1000Nodes - load: 0.03386497497558594 seconds.
+            save: 0.17001080513000488 seconds.
+            center: 54.71163010597229 seconds.
+            tsp: 0.6136479377746582 seconds.
+        
+ 10000Nodes - load: 0.3634347915649414 seconds.
+              save: 1.428781509399414 seconds.
+              center: time out.
+              tsp: 54.48483610153198 seconds.
+              
+  100000Nodes - load: 1.49850385543 seconds.
+              save: 2.84750382844 seconds.
+              center: time out.
+              tsp: 420.490493930 seconds.
+              
+  1000000Nodes - load:8.584936 seconds.
+              save: 11.99504943 seconds.
+              center: time out.
+              tsp: time out.
+
 
 # Performance report JAVA:
+LIST FOR TSP = [5,7,12,2,6,8]
+A1 - load: 0.0690667 seconds.
+     save: 0.0295548 seconds.
+     center: 0.0035093 seconds.
+     tsp: 0.0010492 seconds.
+     
+ A2 -load: 0.0745078 seconds.
+     save: 0.0343959 seconds.
+     center: 0.0067195 seconds.
+     tsp: 0.0017324 seconds.
+     
+ A3 - load: 0.0867274 seconds.
+      save: 0.043926 seconds.
+      center: 0.0155121 seconds.
+      tsp: 0.0028359 seconds.
+      
+ A4 -load: 0.0923068 seconds.
+     save: 0.040455 seconds.
+     center: 0.0120735 seconds.
+     tsp: 0.0024453 seconds.
+     
+ A5 -load: 0.076474 seconds.
+     save: 0.0430814 seconds.
+     center: 0.0178586 seconds.
+     tsp: 0.002405 seconds.
+ 
+ 1000Nodes-load: 0.135766 seconds.
+            save: 0.0212987 seconds.
+            center: 1.5033647 seconds.
+            tsp: 0.6136479377746582 seconds.
+            
+  10000Nodes - load: 0.5578271 seconds.
+              save: 0.7730976 seconds.
+              center: 413.4222973 seconds.
+              tsp: 0.4096476 seconds.
+         
+  100000Nodes - load: 7.9033062 seconds.
+              save:  8.589064 seconds. seconds.
+              center: time out
+              tsp: 4.7853509 seconds.
+           
+ 1000000Nodes - load: 15.345706 seconds.
+              save:  17.19803 seconds. seconds.
+              center: time out
+              tsp: 12.67467 seconds.
+              
+
+# Performance report by Plotting:
+A1:
+<img width="469" alt="image" src="https://user-images.githubusercontent.com/79164312/147565578-aab60023-56c3-4c97-9639-9c6a32834799.png">
 
 
-# Performance report:
+A2:
+<img width="476" alt="image" src="https://user-images.githubusercontent.com/79164312/147565379-b498ea32-da4f-4577-a922-6679f1bd2266.png">
 
-LOAD TIME:
+A3:
+<img width="472" alt="image" src="https://user-images.githubusercontent.com/79164312/147565766-d8c2dec5-41a2-4252-adac-c487319031c6.png">
 
-1000Nodes.json: 0.135766 seconds.
+A4:
+<img width="472" alt="image" src="https://user-images.githubusercontent.com/79164312/147565939-4450b735-e015-49a7-a238-ae6a9b77133b.png">
 
-10000Nodes.json: 0.6116749 seconds.
+A5:
+<img width="469" alt="image" src="https://user-images.githubusercontent.com/79164312/147566165-d955bbf3-7809-489b-98ab-a6b66ab79b0f.png">
 
-100000Nodes.json: 7.9033062 seconds.
 
-1000000Nodes.json: 15.345706 seconds.
 
-IS CONNECTED TIME:
 
-1000Nodes.json: 0.0212987 seconds.
-
-10000Nodes.json: 0.3410193 seconds.
-
-100000Nodes.json: 5.7483396 seconds.
-
-1000000Nodes.json:was not able to create a connected graph.
-
-CENTER TIME:
-
-1000Nodes.json: 1.5033647 seconds.
-
-10000Nodes.json: 413.4222973 seconds.
-
-100000Nodes.json: time out.
-
-1000000Nodes.json: time out.
