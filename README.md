@@ -146,42 +146,58 @@ A1 -
     center: 0.0009214878082275391 seconds.
     tsp: 0.00099945068359375 seconds.
 
-A2 -load: 0.0010004043579101562 seconds.
+A2 -
+
+    load: 0.0010004043579101562 seconds.
     save: 0.005053520202636719 seconds.
     center: 0.002947092056274414 seconds.
     tsp: 0.0009999275207519531 seconds.
 
-A3 - load: 0.0010004043579101562 seconds.
+A3 - 
+    
+    load: 0.0010004043579101562 seconds.
     save: 0.006071567535400391 seconds.
     center: 0.01009678840637207 seconds.
     tsp: 0.002000093460083008 seconds.
 
-A4-load: 0.0010006427764892578 seconds.
+A4-
+
+   load: 0.0010006427764892578 seconds.
    save: 0.00450897216796875 seconds.
    center: 0.006002664566040039 seconds.
    tsp: 0.0009999275207519531 seconds.
 
-A5 -load: 0.0010006427764892578 seconds.
+A5 -
+
+    load: 0.0010006427764892578 seconds.
     save: 0.006489276885986328 seconds.
     center: 0.008997440338134766 seconds.
     tsp: 0.002000093460083008 seconds.
     
- 1000Nodes - load: 0.03386497497558594 seconds.
+ 1000Nodes -
+ 
+            load: 0.03386497497558594 seconds.
             save: 0.17001080513000488 seconds.
             center: 54.71163010597229 seconds.
             tsp: 0.6136479377746582 seconds.
         
- 10000Nodes - load: 0.3634347915649414 seconds.
+ 10000Nodes -
+              
+              load: 0.3634347915649414 seconds.
               save: 1.428781509399414 seconds.
               center: time out.
               tsp: 54.48483610153198 seconds.
               
-  100000Nodes - load: 1.49850385543 seconds.
+  100000Nodes - 
+              
+              load: 1.49850385543 seconds.
               save: 2.84750382844 seconds.
               center: time out.
               tsp: 420.490493930 seconds.
               
-  1000000Nodes - load:8.584936 seconds.
+  1000000Nodes - 
+              
+              load:8.584936 seconds.
               save: 11.99504943 seconds.
               center: time out.
               tsp: time out.
@@ -189,47 +205,65 @@ A5 -load: 0.0010006427764892578 seconds.
 
 # Performance report JAVA:
 LIST FOR TSP = [5,7,12,2,6,8]
-A1 - load: 0.0690667 seconds.
+A1 - 
+     
+     load: 0.0690667 seconds.
      save: 0.0295548 seconds.
      center: 0.0035093 seconds.
      tsp: 0.0010492 seconds.
      
- A2 -load: 0.0745078 seconds.
+ A2 -
+     
+     load: 0.0745078 seconds.
      save: 0.0343959 seconds.
      center: 0.0067195 seconds.
      tsp: 0.0017324 seconds.
      
- A3 - load: 0.0867274 seconds.
+ A3 - 
+     
+      load: 0.0867274 seconds.
       save: 0.043926 seconds.
       center: 0.0155121 seconds.
       tsp: 0.0028359 seconds.
       
- A4 -load: 0.0923068 seconds.
+ A4 - 
+     
+     load: 0.0923068 seconds.
      save: 0.040455 seconds.
      center: 0.0120735 seconds.
      tsp: 0.0024453 seconds.
      
- A5 -load: 0.076474 seconds.
+ A5 -
+     
+     load: 0.076474 seconds.
      save: 0.0430814 seconds.
      center: 0.0178586 seconds.
      tsp: 0.002405 seconds.
  
- 1000Nodes-load: 0.135766 seconds.
+ 1000Nodes-
+            
+            load: 0.135766 seconds.
             save: 0.0212987 seconds.
             center: 1.5033647 seconds.
             tsp: 0.6136479377746582 seconds.
             
-  10000Nodes - load: 0.5578271 seconds.
+ 10000Nodes - 
+              
+              load: 0.5578271 seconds.
               save: 0.7730976 seconds.
               center: 413.4222973 seconds.
               tsp: 0.4096476 seconds.
          
-  100000Nodes - load: 7.9033062 seconds.
+  100000Nodes - 
+              
+              load: 7.9033062 seconds.
               save:  8.589064 seconds. seconds.
               center: time out
               tsp: 4.7853509 seconds.
            
- 1000000Nodes - load: 15.345706 seconds.
+ 1000000Nodes -
+              
+              load: 15.345706 seconds.
               save:  17.19803 seconds. seconds.
               center: time out
               tsp: 12.67467 seconds.
@@ -237,7 +271,7 @@ A1 - load: 0.0690667 seconds.
 
 # Performance report by Plotting:
 A1:
-<img width="469" alt="image" src="https://user-images.githubusercontent.com/79164312/147565578-aab60023-56c3-4c97-9639-9c6a32834799.png">
+<img width="472" alt="image" src="https://user-images.githubusercontent.com/79164312/147567152-82ca1137-b2d7-4bb1-9f19-819d9feb1dec.png">
 
 
 A2:
