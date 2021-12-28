@@ -108,36 +108,63 @@ nodesListToIntLis -  converting node list to their id wich is int.
 
 After loading the graph there is a screen that we created by using pygame.
 
-In this screen we have several options the we created in the bar , by using the Jbar of gui.
+In this screen we have several options that we created in the bar , by using buttons.
 
-File – Where the options are to Save and to load from the file, by using the algorithms of save and load that we explained.
+<img width="140" alt="image" src="https://user-images.githubusercontent.com/79164312/147508868-dc25ce8f-e148-433a-8037-94018bef01a2.png">
 
-UPDATE – where are the options to edit the nodes and the edges of the graph(removing and addition).
+Center – by pressing the center button the center will be painted with a green circle.
 
-![image](https://user-images.githubusercontent.com/79406881/145828412-b4c21116-edbb-43e7-b5fb-01ade4afa00d.png)
+<img width="644" alt="image" src="https://user-images.githubusercontent.com/79164312/147508937-dc2e9d69-7038-42cb-925f-a7b24a757e22.png">
 
-USE ALGORITHMS – where there are all the algorithms we can find in Class DWGAlgorithms.
+Tsp = by pressing the tsp button  a second screen will be open and you will be requested to insert the node list, after that it will draw the rout on the graph.
 
-![image](https://user-images.githubusercontent.com/79406881/145828485-200b4dd1-b795-470b-9259-e57ab50586f7.png)
+<img width="320" alt="image" src="https://user-images.githubusercontent.com/79164312/147509005-7f90a285-4ebb-4f94-b35c-e6df5ad10602.png">
 
+Shortest - by pressing the shortest button  a second screen will be open and you will be requested to insert the two nodes,fter that it will draw the rout on the graph.
 
-### We did it by building 5 classes:
+<img width="251" alt="image" src="https://user-images.githubusercontent.com/79164312/147509066-88570125-37b4-41d2-bb5b-3e05b3dc6e9c.png">
 
-GUI\_WINDOW – this is the class which is showing the screen.
+### We did it by building 2 classes:
 
-GUI\_MANUE – this class is building the menu That we explained at the beginning of this explanation.
+graph_gui – this is the class which is showing the screen , normalizing the graph and drawing the graph and the buttons and the lines.
 
-GUI\_ADDITIONAL\_WINDOW – that is showing the results of every algorithm on the screen every time.
+gui input – this class is showing the input screen which by using him we are getting the nodes to use the tsp or the shortest path algorithems.
 
-GUI\_EDGES – drawing the lines between the nodes by normalizing them by the location and the screen size.
-
-GUI\_NODES – drawing the circles(nodes) by normalizing them by the location and the screen size and showing the id.
+<img width="478" alt="image" src="https://user-images.githubusercontent.com/79164312/147509354-5771ed2d-c046-49e8-ba84-ebab22b3e29a.png">
 
 NOTE : we also added a function that while searching the shortest path between the nodes(while running shortest path algorithm or tsp) we drawing the path and showing the weight of the edge. This is happening also when we are adding an edge. We also showing the node while adding it and the center while searching it.
 
-GUI example (shortest path algoritm):
 
-![image](https://user-images.githubusercontent.com/79406881/145829442-678a257a-740c-42a3-b52c-5e0a5e7a9a96.png)
+# Performance report python:
+LIST FOR TSP = [5,7,12,2,6,8]
+
+A1 - load: 0.0
+save: 0.0030765533447265625
+center: 0.0009214878082275391
+tsp: 0.00099945068359375
+
+A2 -load: 0.0010004043579101562
+save: 0.005053520202636719
+center: 0.002947092056274414
+tsp: 0.0009999275207519531
+
+A3 - load: 0.0010004043579101562
+save: 0.006071567535400391
+center: 0.01009678840637207
+tsp: 0.002000093460083008
+
+A4-load: 0.0010006427764892578
+save: 0.00450897216796875
+center: 0.006002664566040039
+tsp: 0.0009999275207519531
+
+A5 -load: 0.0010006427764892578
+save: 0.006489276885986328
+center: 0.008997440338134766
+tsp: 0.002000093460083008
+
+# Performance report JAVA:
+
 
 # Performance report:
 
