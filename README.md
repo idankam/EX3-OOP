@@ -287,6 +287,3 @@ A4:
 A5:
 <img width="469" alt="image" src="https://user-images.githubusercontent.com/79164312/147566165-d955bbf3-7809-489b-98ab-a6b66ab79b0f.png">
 
-
-
-
