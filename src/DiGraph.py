@@ -52,7 +52,7 @@ class DiGraph(GraphInterface):
             print("there is no such key!")
             return False
         else:
-            for key in self.Edges.keys():
+            for key in list(self.Edges.keys()):
                 src = key.split(',')[0]
                 dest = key.split(',')[1]
                 if src == str(node_id):
@@ -106,9 +106,6 @@ class DiGraph(GraphInterface):
     def transpose(self):
         T_graph = DiGraph()
         for node in self.Nodes.values():
-            # copy_node = node.copy()
-            # copy_node.edges_out.clear()
-            # copy_node.edges_in.clear()
             T_graph.add_node(node_id=node.id, pos=(node.pos.x, node.pos.y, node.pos.z))
 
         for edge in self.Edges.values():
