@@ -137,42 +137,42 @@ NOTE : we also added a function that while searching the shortest path between t
 
 
 # Performance report python:
-LIST FOR TSP = [5,7,12,2,6,8]
+#### (LIST FOR TSP = [5,7,12,2,6,8])
 
 A1 - 
 
-    load: 0.0010006427764892578 seconds.
-    save: 0.0030765533447265625 seconds.
-    center: 0.0009214878082275391 seconds.
-    tsp: 0.00099945068359375 seconds.
+            load: 0.0010006427764892578 seconds.
+            save: 0.0030765533447265625 seconds.
+            center: 0.0009214878082275391 seconds.
+            tsp: 0.00099945068359375 seconds.
 
 A2 -
 
-    load: 0.0010004043579101562 seconds.
-    save: 0.005053520202636719 seconds.
-    center: 0.002947092056274414 seconds.
-    tsp: 0.0009999275207519531 seconds.
+            load: 0.0010004043579101562 seconds.
+            save: 0.005053520202636719 seconds.
+            center: 0.002947092056274414 seconds.
+            tsp: 0.0009999275207519531 seconds.
 
 A3 - 
     
-    load: 0.0010004043579101562 seconds.
-    save: 0.006071567535400391 seconds.
-    center: 0.01009678840637207 seconds.
-    tsp: 0.002000093460083008 seconds.
+            load: 0.0010004043579101562 seconds.
+            save: 0.006071567535400391 seconds.
+            center: 0.01009678840637207 seconds.
+            tsp: 0.002000093460083008 seconds.
 
 A4-
 
-   load: 0.0010006427764892578 seconds.
-   save: 0.00450897216796875 seconds.
-   center: 0.006002664566040039 seconds.
-   tsp: 0.0009999275207519531 seconds.
+            load: 0.0010006427764892578 seconds.
+            save: 0.00450897216796875 seconds.
+            center: 0.006002664566040039 seconds.
+            tsp: 0.0009999275207519531 seconds.
 
 A5 -
 
-    load: 0.0010006427764892578 seconds.
-    save: 0.006489276885986328 seconds.
-    center: 0.008997440338134766 seconds.
-    tsp: 0.002000093460083008 seconds.
+            load: 0.0010006427764892578 seconds.
+            save: 0.006489276885986328 seconds.
+            center: 0.008997440338134766 seconds.
+            tsp: 0.002000093460083008 seconds.
     
  1000Nodes -
  
@@ -204,41 +204,42 @@ A5 -
 
 
 # Performance report JAVA:
-LIST FOR TSP = [5,7,12,2,6,8]
+#### LIST FOR TSP = [5,7,12,2,6,8]
+
 A1 - 
      
-     load: 0.0690667 seconds.
-     save: 0.0295548 seconds.
-     center: 0.0035093 seconds.
-     tsp: 0.0010492 seconds.
+            load: 0.0690667 seconds.
+            save: 0.0295548 seconds.
+            center: 0.0035093 seconds.
+            tsp: 0.0010492 seconds.
      
  A2 -
      
-     load: 0.0745078 seconds.
-     save: 0.0343959 seconds.
-     center: 0.0067195 seconds.
-     tsp: 0.0017324 seconds.
+            load: 0.0745078 seconds.
+            save: 0.0343959 seconds.
+            center: 0.0067195 seconds.
+            tsp: 0.0017324 seconds.
      
  A3 - 
      
-      load: 0.0867274 seconds.
-      save: 0.043926 seconds.
-      center: 0.0155121 seconds.
-      tsp: 0.0028359 seconds.
+            load: 0.0867274 seconds.
+            save: 0.043926 seconds.
+            center: 0.0155121 seconds.
+            tsp: 0.0028359 seconds.
       
  A4 - 
      
-     load: 0.0923068 seconds.
-     save: 0.040455 seconds.
-     center: 0.0120735 seconds.
-     tsp: 0.0024453 seconds.
+            load: 0.0923068 seconds.
+            save: 0.040455 seconds.
+            center: 0.0120735 seconds.
+            tsp: 0.0024453 seconds.
      
  A5 -
      
-     load: 0.076474 seconds.
-     save: 0.0430814 seconds.
-     center: 0.0178586 seconds.
-     tsp: 0.002405 seconds.
+            load: 0.076474 seconds.
+            save: 0.0430814 seconds.
+            center: 0.0178586 seconds.
+            tsp: 0.002405 seconds.
  
  1000Nodes-
             
@@ -267,7 +268,7 @@ A1 -
               save:  17.19803 seconds. seconds.
               center: time out
               tsp: 12.67467 seconds.
-              
+
 
 # Performance report by Plotting:
 A1:
