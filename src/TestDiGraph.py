@@ -54,4 +54,3 @@ class TestDiGraph(TestCase):
         e = self.graph.all_out_edges_of_node(0)
         print(len(e))
         self.assertTrue(len(e) == 4)
-
