@@ -225,5 +225,5 @@ class Gui:
 
 if __name__ == '__main__':
     gAlgo = GraphAlgo()
-    g = gAlgo.load_from_json(r"..\data\A0.json")
+    g = gAlgo.load_from_json(r"..\data\T0.json")
     Gui(gAlgo)
