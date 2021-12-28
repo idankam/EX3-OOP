@@ -139,12 +139,10 @@ NOTE : we also added a function that while searching the shortest path between t
 # Performance report python:
 LIST FOR TSP = [5,7,12,2,6,8]
 
-A1 - load: 0.0010006427764892578 seconds.
-
+A1 - 
+    load: 0.0010006427764892578 seconds.
     save: 0.0030765533447265625 seconds.
-    
     center: 0.0009214878082275391 seconds.
-    
     tsp: 0.00099945068359375 seconds.
 
 A2 -load: 0.0010004043579101562 seconds.
