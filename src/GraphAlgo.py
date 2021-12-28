@@ -76,13 +76,10 @@ class GraphAlgo(GraphAlgoInterface):
                     g.add_node(node_id=n["id"], pos=(float(loc[0]), float(loc[1]), float(loc[2])))
                 else:
                     g.add_node(node_id=n["id"])
-                # node = Node(n["id"], pos=(Decimal(loc[0]), Decimal(loc[1]), Decimal(loc[2])))
-                # g.Nodes[n["id"]] = node
 
             for e in dict["Edges"]:
                 g.add_edge(id1=e['src'], id2=e['dest'], weight=e['w'])
-                # edge = Edge(e['src'], e['w'], e['dest'])
-                # g.Edges[str(edge.src)+","+str(edge.dest)] = edge
+
             self.__init__(g)
             return True
         except:
